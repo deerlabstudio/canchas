@@ -1,0 +1,32 @@
+{
+  "name": "canchas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean:install": "rm -rf node_modules && npm install",
+    "coverage": "nyc ava",
+    "coverage:open": "open ./coverage/lcov-report/index.html",
+    "lint": "eslint --ext .js .",
+    "start": "node index.js",
+    "test": "ava --verbose"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^19.0.5",
+    "convict": "^5.2.0"
+  },
+  "devDependencies": {
+    "ava": "^3.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "get-port": "^5.1.1",
+    "nyc": "^15.0.0"
+  }
+}

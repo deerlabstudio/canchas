@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "global-require": "off",
+    "no-underscore-dangle": "off"
+  }
+}
