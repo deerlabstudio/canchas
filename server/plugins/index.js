@@ -1,8 +1,8 @@
-const internals = require('./internals');
+const helpers = require('./helpers');
 
 module.exports = {
   name: 'routes',
   async register(server) {
-    await server.register(internals);
+    await server.register(helpers);
   },
 };

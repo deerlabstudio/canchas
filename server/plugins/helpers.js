@@ -14,6 +14,6 @@ module.exports = {
       },
     ];
 
-    await server.register(plugins, { routes: { prefix: '/internals' } });
+    await server.register(plugins, { routes: { prefix: '/helpers' } });
   },
 };

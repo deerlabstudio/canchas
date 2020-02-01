@@ -12,6 +12,8 @@
   ],
   "exclude": [
     "index.js",
+    "**/utils/logger.js",
+    "test",
     "**/.nyc_output",
     "**/coverage"
   ]

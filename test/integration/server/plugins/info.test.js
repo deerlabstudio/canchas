@@ -6,27 +6,26 @@ const infoPlugin = require('../../../../server/plugins/info');
 const config = require('../../../../config/config');
 const pk = require('../../../../package.json');
 
-let server;
 
-test.beforeEach(async () => {
+test.beforeEach(async (t) => {
   const port = await getPort();
   config.set('server', { port });
-  server = hapi.server(config.get('server'));
-  await server.register(infoPlugin);
-  await server.start();
+  t.context.server = hapi.server(config.get('server'));
+  await t.context.server.register(infoPlugin);
+  await t.context.server.start();
 });
 
-test.after(() => {
-  server.stop();
+test.afterEach((t) => {
+  t.context.server.stop();
 });
 
-test.serial('Evaluate the unique registered plugins is Info', (t) => {
-  const registrations = Object.keys(server._core.registrations).length;
+test('Evaluate the unique registered plugins is Info', (t) => {
+  const registrations = Object.keys(t.context.server._core.registrations).length;
   t.is(registrations, 1);
 });
 
-test.serial('Obtain response from info', async (t) => {
-  const response = await server.inject({
+test('Obtain response from info', async (t) => {
+  const response = await t.context.server.inject({
     url: '/info',
     method: 'GET',
   });

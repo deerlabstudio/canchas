@@ -5,27 +5,25 @@ const getPort = require('get-port');
 const healthPlugin = require('../../../../server/plugins/health');
 const config = require('../../../../config/config');
 
-let server;
-
-test.beforeEach(async () => {
+test.beforeEach(async (t) => {
   const port = await getPort();
   config.set('server', { port });
-  server = hapi.server(config.get('server'));
-  await server.register(healthPlugin);
-  await server.start();
+  t.context.server = hapi.server(config.get('server'));
+  await t.context.server.register(healthPlugin);
+  await t.context.server.start();
 });
 
-test.after(() => {
-  server.stop();
+test.afterEach((t) => {
+  t.context.server.stop();
 });
 
-test.serial('Evaluate the unique registered plugins is Health', (t) => {
-  const registrations = Object.keys(server._core.registrations).length;
+test('Evaluate the unique registered plugins is Health', (t) => {
+  const registrations = Object.keys(t.context.server._core.registrations).length;
   t.is(registrations, 1);
 });
 
-test.serial('Obtain response from health', async (t) => {
-  const response = await server.inject({
+test('Obtain response from health', async (t) => {
+  const response = await t.context.server.inject({
     url: '/health',
     method: 'GET',
   });
