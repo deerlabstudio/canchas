@@ -20,5 +20,5 @@ test.afterEach(async (t) => {
 test('Evaluate all the plugins was registered', (t) => {
   t.plan(1);
   const registrations = Object.keys(t.context.server._core.registrations).length;
-  t.is(registrations, 4);
+  t.is(registrations, 6);
 });

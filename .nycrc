@@ -14,6 +14,7 @@
     "index.js",
     "**/utils/logger.js",
     "test",
+    "database",
     "**/.nyc_output",
     "**/coverage"
   ]

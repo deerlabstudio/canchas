@@ -20,7 +20,7 @@ test.afterEach((t) => {
 test('Check the number of plugins registered', (t) => {
   t.plan(1);
   const registrations = Object.keys(t.context.app._core.registrations).length;
-  t.is(registrations, 4);
+  t.is(registrations, 6);
 });
 
 test('Check the application start in the correct port', (t) => {

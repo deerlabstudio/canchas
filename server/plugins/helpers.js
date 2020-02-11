@@ -5,7 +5,7 @@ module.exports = {
   name: 'internals',
   once: true,
   async register(server) {
-    const plugins = [
+    const routes = [
       {
         plugin: health,
       },
@@ -14,6 +14,6 @@ module.exports = {
       },
     ];
 
-    await server.register(plugins, { routes: { prefix: '/helpers' } });
+    await server.register(routes, { routes: { prefix: '/helpers' } });
   },
 };
