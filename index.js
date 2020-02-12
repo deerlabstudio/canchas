@@ -1,14 +1,18 @@
-const server = require('./server/server');
+const serverFactory = require('./server/server');
 const config = require('./config/config');
 
 const logger = require('./utils/logger');
 
+const databaseSetup = require('./lib/databaseSetup');
+
 async function main() {
   try {
-    const app = await server.init(config);
-    await app.start();
+    const server = await serverFactory.init(config);
 
-    logger.info('Server Running');
+    await databaseSetup(config);
+    await server.start();
+
+    logger.info(`Server Running at ${server.info.uri}`);
   } catch (error) {
     logger.error(error);
     process.exit(1);

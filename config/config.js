@@ -42,6 +42,12 @@ module.exports = convict({
       env: 'DB_HOST',
       default: '127.0.0.1',
     },
+    port: {
+      doc: 'Port to connect to the database',
+      format: 'port',
+      env: 'DB_PORT',
+      default: 3306,
+    },
     dialect: {
       doc: 'Type of Database to use',
       env: 'DB_DIALECT',
