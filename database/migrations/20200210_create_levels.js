@@ -15,6 +15,14 @@ module.exports = {
         allowNull: false,
         type: Datatypes.STRING(255),
       },
+      createdAt: {
+        allowNull: false,
+        type: Datatypes.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Datatypes.DATE,
+      },
     });
   },
   down(queryInterface) {

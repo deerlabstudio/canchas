@@ -3,13 +3,25 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const config = require('../../config/config');
+const migrator = require('../../lib/migrator');
 
 const basename = path.basename(__filename);
 const db = {};
 
-const { database, username, password } = config.get('database');
+const {
+  database,
+  username,
+  password,
+  host,
+  port,
+  dialect,
+} = config.get('database');
 
-const sequelize = new Sequelize(database, username, password, config.get('database'));
+const sequelize = new Sequelize(database, username, password, {
+  host,
+  port,
+  dialect,
+});
 
 fs
   .readdirSync(__dirname)
@@ -27,5 +39,6 @@ Object.keys(db).forEach((modelName) => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.migrate = migrator({ sequelize });
 
 module.exports = db;

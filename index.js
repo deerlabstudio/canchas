@@ -3,13 +3,13 @@ const config = require('./config/config');
 
 const logger = require('./utils/logger');
 
-const databaseSetup = require('./lib/databaseSetup');
+const models = require('./database/models');
 
 async function main() {
   try {
     const server = await serverFactory.init(config);
 
-    await databaseSetup(config);
+    await models.migrate.migrate();
     await server.start();
 
     logger.info(`Server Running at ${server.info.uri}`);
